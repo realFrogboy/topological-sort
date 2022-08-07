@@ -6,7 +6,7 @@
 #include <math.h>
 #include "stack.h"
 
-//#define GRAPH_DUMP
+#define GRAPH_DUMP
 
 #define PREV(x) strc->arr[x].prev
 #define NEXT(x) strc->arr[x].next
@@ -31,6 +31,7 @@ struct list_t {
     size_t head;
     size_t tail;
     size_t capacity;
+    size_t size;
 };
 
 const int size_of_list = 1;

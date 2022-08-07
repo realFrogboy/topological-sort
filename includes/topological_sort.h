@@ -14,3 +14,5 @@ struct elem_arr_t {
 
 elem_arr_t* get_data();
 void elem_arr_dtor(elem_arr_t* elem_arr);
+list_t* queue_ctor(elem_arr_t* elem_arr);
+int sort(elem_arr_t* elem_arr);

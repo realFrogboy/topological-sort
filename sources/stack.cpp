@@ -6,10 +6,8 @@ stack_t* stackCtor(){
     st->capacity = START_STACK_SIZE; 
     st->Size = 0;
 
-    st->data = (double*)calloc(st->capacity + 2, sizeof (double));
+    st->data = (double*)calloc(st->capacity, sizeof (double));
     assert(st->data);
-
-    st->data++;
 
     return st;
 }
@@ -50,7 +48,7 @@ void stackPop(stack_t* st){
 void stackDtor(stack_t* st){
     assert(st);
 
-    free (--st->data);
+    free (st->data);
     free(st);
 }
 
@@ -62,11 +60,9 @@ void reallocate(stack_t* st, const size_t newSize){
     assert(st);
 
     st->capacity = newSize;
-    st->data--;
 
-    double *tmp = (double*) realloc (st->data, (st->capacity + 2) * sizeof(double));
+    double *tmp = (double*) realloc (st->data, (st->capacity) * sizeof(double));
     assert(tmp);
 
     st->data = tmp;
-    st->data++;
 }

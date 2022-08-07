@@ -13,6 +13,7 @@ list_t* list_ctor(){
     HEAD = 1;
     TAIL = 0;
     strc->capacity = size_of_list;
+    strc->size = 0;
 
     return strc;
 }
@@ -83,6 +84,8 @@ void ins_at_the_beg(list_t *strc, double val){
     NEXT(0) = idx;
 
     HEAD = idx;
+
+    strc->size++;
 }
 
 void ins_at_the_end(list_t *strc, double val){
@@ -103,6 +106,8 @@ void ins_at_the_end(list_t *strc, double val){
     PREV(0) = idx;
 
     TAIL = idx;
+
+    strc->size++;
 }
 
 void ins_before(list_t *strc, size_t elem, double val){
@@ -124,6 +129,8 @@ void ins_before(list_t *strc, size_t elem, double val){
     PREV(elem) = idx;
 
     NEXT(prev_of_elem) = idx;
+
+    strc->size++;
 }
 
 void ins_after(list_t *strc, size_t elem, double val){
@@ -145,6 +152,8 @@ void ins_after(list_t *strc, size_t elem, double val){
     NEXT(elem) = idx;
 
     PREV(next_of_elem) = idx;
+
+    strc->size++;
 }
 
 void del_elem(list_t *strc, size_t elem){
@@ -169,6 +178,7 @@ void del_elem(list_t *strc, size_t elem){
 
     stackPush(FREE_ELEM, elem);
     N_FREE_ELEM++;
+    strc->size--;
 }
 
 void del_ALL_elem(list_t *strc){
@@ -179,6 +189,8 @@ void del_ALL_elem(list_t *strc){
         NEXT(idx) = -1;
         PREV(idx) = -1;         
     }
+
+    strc->size = 0;
 }
 
 void realloc_list(list_t *strc){
